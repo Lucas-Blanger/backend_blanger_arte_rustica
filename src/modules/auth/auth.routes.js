@@ -134,4 +134,84 @@ router.post(
  */
 router.get('/me', authenticate, authController.me);
 
+/**
+ * @swagger
+ * /auth/forgot-password:
+ *   post:
+ *     summary: Solicita envio do código de recuperação de senha por e-mail
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [email]
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 format: email
+ *                 example: maria@email.com
+ *     responses:
+ *       200:
+ *         description: Código de recuperação enviado (se o e-mail existir)
+ *       400:
+ *         description: E-mail inválido
+ */
+router.post(
+  '/forgot-password',
+  [
+    body('email').isEmail().withMessage('E-mail inválido').normalizeEmail(),
+  ],
+  validate,
+  authController.forgotPassword
+);
+
+/**
+ * @swagger
+ * /auth/reset-password:
+ *   post:
+ *     summary: Redefine a senha com o código de 6 dígitos recebido por e-mail
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [email, code, newPassword]
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 format: email
+ *                 example: maria@email.com
+ *               code:
+ *                 type: string
+ *                 example: "123456"
+ *               newPassword:
+ *                 type: string
+ *                 minLength: 6
+ *                 example: novaSenha123
+ *     responses:
+ *       200:
+ *         description: Senha redefinida com sucesso
+ *       400:
+ *         description: Código inválido, expirado ou dados incorretos
+ */
+router.post(
+  '/reset-password',
+  [
+    body('email').isEmail().withMessage('E-mail inválido').normalizeEmail(),
+    body('code')
+      .isLength({ min: 6, max: 6 })
+      .withMessage('Código deve ter 6 dígitos'),
+    body('newPassword')
+      .isLength({ min: 6 })
+      .withMessage('Nova senha deve ter no mínimo 6 caracteres'),
+  ],
+  validate,
+  authController.resetPassword
+);
+
 module.exports = router;
+

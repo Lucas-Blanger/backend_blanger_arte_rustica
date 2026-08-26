@@ -16,4 +16,9 @@ module.exports = {
   jwtSecret: process.env.JWT_SECRET,
   jwtExpiresIn: process.env.JWT_EXPIRES_IN,
   corsOrigin: process.env.CORS_ORIGIN,
+  smtpHost: process.env.SMTP_HOST,
+  smtpPort: process.env.SMTP_PORT,
+  smtpUser: process.env.SMTP_USER,
+  smtpPass: process.env.SMTP_PASS,
+  emailFrom: process.env.EMAIL_FROM,
 };

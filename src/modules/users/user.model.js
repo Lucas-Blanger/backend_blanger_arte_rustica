@@ -3,7 +3,7 @@ const { sequelize } = require("../../config/database");
 
 class User extends Model {
   toSafeJSON() {
-    const { passwordHash, ...safe } = this.toJSON();
+    const { passwordHash, resetCode, resetCodeExpiresAt, ...safe } = this.toJSON();
     return safe;
   }
 }
@@ -45,7 +45,18 @@ User.init(
       defaultValue: true,
       field: "is_active",
     },
+    resetCode: {
+      type: DataTypes.STRING(6),
+      allowNull: true,
+      field: "reset_code",
+    },
+    resetCodeExpiresAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      field: "reset_code_expires_at",
+    },
   },
+
   {
     sequelize,
     modelName: "User",
