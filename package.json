@@ -7,7 +7,13 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "db:sync": "node src/database/sync.js"
+    "test": "jest tests/unit --runInBand",
+    "test:unit": "jest tests/unit --runInBand",
+    "test:integration": "jest tests/integration --runInBand",
+    "test:watch": "jest tests/unit --watch",
+    "db:sync": "node src/database/sync.js",
+    "db:seed": "node src/database/seed.js",
+    "db:setup": "node src/database/sync.js && node src/database/seed.js"
   },
   "keywords": [
     "ecommerce",
@@ -18,7 +24,7 @@
     "neon"
   ],
   "author": "Blanger Arte Rústica",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
@@ -34,7 +40,9 @@
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.4"
+    "jest": "^30.4.2",
+    "nodemon": "^3.1.4",
+    "supertest": "^7.2.2"
   },
   "engines": {
     "node": ">=18.0.0"
