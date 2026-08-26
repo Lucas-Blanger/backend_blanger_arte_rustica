@@ -54,13 +54,33 @@ npm install
 npm run db:sync
 ```
 
-4. Rode em modo desenvolvimento (hot reload com nodemon):
+5. Popule o banco com dados iniciais (Seed):
+
+```bash
+npm run db:seed
+```
+
+Ou execute a sincronização + seed em um único comando:
+
+```bash
+npm run db:setup
+```
+
+6. Rode em modo desenvolvimento (hot reload com nodemon):
 
 ```bash
 npm run dev
 ```
 
 A API sobe em `http://localhost:3000`, com prefixo `/api/v1`.
+
+## Executando os Testes
+
+Para rodar a suíte completa de testes unitários automatizados (Jest):
+
+```bash
+npm run test:unit
+```
 
 > Em modo `development`, o `server.js` já sincroniza os models automaticamente a cada start (`sequelize.sync({ alter: true })`), então o passo 3 é opcional no dia a dia — mas é útil para a primeira criação das tabelas ou em produção.
 
