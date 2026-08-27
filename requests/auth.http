@@ -1,0 +1,51 @@
+@baseUrl = http://localhost:3000/api/v1
+
+### Registrar Usuário
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Maria Silva",
+  "email": "maria@email.com",
+  "password": "senha123",
+  "phone": "11999999999"
+}
+
+### Realizar Login
+# 1. Damos um nome para esta requisição usando o comentário abaixo:
+# @name fazerLogin
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "maria@email.com",
+  "password": "senha123"
+}
+
+###
+# 2. Capturamos o token da resposta da requisição "fazerLogin".
+# ATENÇÃO: Ajuste o caminho "data.token" se a sua API retornar o token em outro lugar (ex: body.token).
+@token = {{fazerLogin.response.body.data.token}}
+
+### Obter Perfil (Me)
+# 3. Agora o token já é injetado automaticamente aqui!
+GET {{baseUrl}}/auth/me
+Authorization: Bearer {{token}}
+
+### Solicitar Recuperação de Senha
+POST {{baseUrl}}/auth/forgot-password
+Content-Type: application/json
+
+{
+  "email": "maria@email.com"
+}
+
+### Redefinir Senha
+POST {{baseUrl}}/auth/reset-password
+Content-Type: application/json
+
+{
+  "email": "maria@email.com",
+  "code": "123456",
+  "newPassword": "novaSenha123"
+}

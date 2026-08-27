@@ -1,0 +1,46 @@
+@baseUrl = http://localhost:3000/api/v1
+@token = eyJhbGci... (cole seu token de cliente aqui)
+@tokenAdmin = eyJhbGci... (cole seu token de admin aqui)
+
+### Visualizar Meu Perfil
+GET {{baseUrl}}/users/me
+Authorization: Bearer {{token}}
+
+### Atualizar Meu Perfil
+PATCH {{baseUrl}}/users/me
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Maria Silva Atualizada"
+}
+
+# ==========================================
+# ROTAS DE ADMIN
+# ==========================================
+
+### 1. Listar Todos os Usuários (Captura o ID do primeiro da lista)
+# @name listarUsuarios
+GET {{baseUrl}}/users?page=1&limit=5
+Authorization: Bearer {{tokenAdmin}}
+
+### Capturar o ID do primeiro usuário retornado na listagem
+# Nota: Ajuste "data.rows[0].id" se sua paginação retornar apenas "data[0].id"
+@userId = {{listarUsuarios.response.body.data.rows[0].id}}
+
+### 2. Buscar Usuário Específico (Usa o ID capturado)
+GET {{baseUrl}}/users/{{userId}}
+Authorization: Bearer {{tokenAdmin}}
+
+### 3. Alterar Papel do Usuário (Admin)
+PATCH {{baseUrl}}/users/{{userId}}/role
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{
+  "role": "admin"
+}
+
+### 4. Desativar/Excluir Usuário (Admin)
+DELETE {{baseUrl}}/users/{{userId}}
+Authorization: Bearer {{tokenAdmin}}

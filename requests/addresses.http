@@ -1,0 +1,48 @@
+@baseUrl = http://localhost:3000/api/v1
+@token = eyJhbGci... (cole seu token aqui)
+
+### Listar Endereços
+GET {{baseUrl}}/addresses
+Authorization: Bearer {{token}}
+
+### 1. Cadastrar Endereço (Captura o ID automaticamente)
+# @name criarEndereco
+POST {{baseUrl}}/addresses
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "label": "Casa",
+  "recipientName": "Maria Silva",
+  "street": "Rua das Flores",
+  "number": "123",
+  "complement": "Apto 12",
+  "neighborhood": "Centro",
+  "city": "Sao Paulo",
+  "state": "SP",
+  "zipCode": "01001-000",
+  "isDefault": true
+}
+
+### Capturar a variável do endereço criado
+@addressId = {{criarEndereco.response.body.data.id}}
+
+### 2. Buscar Endereço Específico (Usa o ID capturado)
+GET {{baseUrl}}/addresses/{{addressId}}
+Authorization: Bearer {{token}}
+
+### 3. Atualizar Endereço (Usa o ID capturado)
+PATCH {{baseUrl}}/addresses/{{addressId}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "label": "Trabalho",
+  "street": "Avenida Paulista",
+  "number": "1000",
+  "isDefault": false
+}
+
+### 4. Remover Endereço (Usa o ID capturado)
+DELETE {{baseUrl}}/addresses/{{addressId}}
+Authorization: Bearer {{token}}

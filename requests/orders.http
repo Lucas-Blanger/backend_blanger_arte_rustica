@@ -1,0 +1,43 @@
+@baseUrl = http://localhost:3000/api/v1
+@token = eyJhbGci... (cole seu token de cliente aqui)
+@tokenAdmin = eyJhbGci... (cole seu token de admin aqui)
+@addressId = cole_um_id_de_endereco_valido_aqui
+@productId = cole_um_id_de_produto_valido_aqui
+
+### 1. Criar Pedido (Captura o ID do Pedido)
+# @name criarPedido
+POST {{baseUrl}}/orders
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "addressId": "{{addressId}}",
+  "paymentMethod": "pix",
+  "notes": "Entregar no periodo da tarde",
+  "items": [
+    {
+      "productId": "{{productId}}",
+      "quantity": 1
+    }
+  ]
+}
+
+### Capturar ID do Pedido
+@orderId = {{criarPedido.response.body.data.id}}
+
+### 2. Buscar Meu Pedido Específico
+GET {{baseUrl}}/orders/{{orderId}}
+Authorization: Bearer {{token}}
+
+### 3. Cancelar Meu Pedido
+POST {{baseUrl}}/orders/{{orderId}}/cancel
+Authorization: Bearer {{token}}
+
+### 4. Atualizar Status do Pedido (Admin)
+PATCH {{baseUrl}}/orders/admin/{{orderId}}/status
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{
+  "status": "paid"
+}

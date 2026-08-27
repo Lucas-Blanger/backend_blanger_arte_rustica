@@ -1,0 +1,66 @@
+@baseUrl = http://localhost:3000/api/v1
+@tokenAdmin = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZhMWI3YTc3LTJmODItNDA3YS1hOWE4LWQ0MTUyMDc5ZjcwZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc4Nzc2OTQzMywiZXhwIjoxNzg4Mzc0MjMzfQ.wuWBMgA4MyTjxCgkko0Sr2U6Nvju75Xn44_Cy3x-eDQ
+
+### Listar Categorias
+GET {{baseUrl}}/products/categories
+
+### 1. Criar Categoria (Captura o ID)
+# @name criarCategoria
+POST {{baseUrl}}/products/categories
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{
+  "name": "Mesas",
+  "description": "Moveis rusticos para sala de jantar"
+}
+
+### Capturar ID da Categoria
+@categoryId = {{criarCategoria.response.body.data.id}}
+
+### 2. Atualizar Categoria
+PATCH {{baseUrl}}/products/categories/{{categoryId}}
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{
+  "name": "Mesas Rústicas"
+}
+
+### 3. Criar Produto (Usa o ID da Categoria criada acima)
+# @name criarProduto
+POST {{baseUrl}}/products
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{
+  "name": "Mesa de Madeira",
+  "price": 899.90,
+  "stock": 8,
+  "categoryId": "{{categoryId}}",
+  "sku": "MESA-001"
+}
+
+### Capturar ID do Produto
+@productId = {{criarProduto.response.body.data.id}}
+
+### 4. Buscar Produto por ID
+GET {{baseUrl}}/products/{{productId}}
+
+### 5. Atualizar Produto
+PATCH {{baseUrl}}/products/{{productId}}
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{
+  "price": 999.90,
+  "stock": 6
+}
+
+### 6. Desativar/Excluir Produto
+DELETE {{baseUrl}}/products/{{productId}}
+Authorization: Bearer {{tokenAdmin}}
+
+### 7. Excluir Categoria
+DELETE {{baseUrl}}/products/categories/{{categoryId}}
+Authorization: Bearer {{tokenAdmin}}
