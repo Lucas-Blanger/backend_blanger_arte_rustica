@@ -5,7 +5,7 @@ const logger = require("../utils/logger");
  */
 class AIService {
   /**
-   * Gera um resumo conciso (até 3 frases) baseado em uma lista de comentários de um produto.
+   * Gera um resumo (até 3 frases) baseado em uma lista de comentários de um produto.
    * @param {string} productName - Nome do produto
    * @param {Array<{comment: string, rating: number}>} reviews - Lista de avaliações
    * @returns {Promise<string>} Resumo gerado pela IA ou fallback
