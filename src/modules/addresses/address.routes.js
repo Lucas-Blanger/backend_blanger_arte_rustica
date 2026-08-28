@@ -22,7 +22,12 @@ const addressValidation = [
   body('neighborhood').trim().notEmpty().withMessage('Bairro é obrigatório'),
   body('city').trim().notEmpty().withMessage('Cidade é obrigatória'),
   body('state').isLength({ min: 2, max: 2 }).withMessage('UF deve ter 2 letras'),
-  body('zipCode').trim().notEmpty().withMessage('CEP é obrigatório'),
+  body('zipCode')
+    .trim()
+    .notEmpty()
+    .withMessage('CEP é obrigatório')
+    .matches(/^\d{5}-?\d{3}$/)
+    .withMessage('CEP inválido. Deve conter 8 dígitos (ex: 01001-000 ou 01001000)'),
   body('isDefault').optional().isBoolean(),
 ];
 
