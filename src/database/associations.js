@@ -4,6 +4,7 @@ const Category = require('../modules/products/category.model');
 const Product = require('../modules/products/product.model');
 const Order = require('../modules/orders/order.model');
 const OrderItem = require('../modules/orders/orderItem.model');
+const Review = require('../modules/reviews/review.model');
 
 // User <-> Address
 User.hasMany(Address, { foreignKey: 'userId', as: 'addresses', onDelete: 'CASCADE' });
@@ -29,4 +30,12 @@ OrderItem.belongsTo(Order, { foreignKey: 'orderId', as: 'order' });
 Product.hasMany(OrderItem, { foreignKey: 'productId', as: 'orderItems' });
 OrderItem.belongsTo(Product, { foreignKey: 'productId', as: 'product' });
 
-module.exports = { User, Address, Category, Product, Order, OrderItem };
+// Product <-> Review
+Product.hasMany(Review, { foreignKey: 'productId', as: 'reviews', onDelete: 'CASCADE' });
+Review.belongsTo(Product, { foreignKey: 'productId', as: 'product' });
+
+// User <-> Review
+User.hasMany(Review, { foreignKey: 'userId', as: 'reviews', onDelete: 'CASCADE' });
+Review.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+
+module.exports = { User, Address, Category, Product, Order, OrderItem, Review };

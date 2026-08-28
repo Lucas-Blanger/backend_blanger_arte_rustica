@@ -59,6 +59,16 @@ Product.init(
       defaultValue: true,
       field: 'is_active',
     },
+    reviewSummary: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      field: 'review_summary',
+    },
+    reviewSummaryUpdatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      field: 'review_summary_updated_at',
+    },
   },
   {
     sequelize,
