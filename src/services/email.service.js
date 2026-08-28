@@ -7,7 +7,7 @@ let transporter;
 function getTransporter() {
   if (transporter) return transporter;
 
-  if (env.smtpHost && env.smtpUser && env.smtpPass) {
+  if (env.nodeEnv !== 'test' && env.smtpHost && env.smtpUser && env.smtpPass) {
     transporter = nodemailer.createTransport({
       host: env.smtpHost,
       port: env.smtpPort,
