@@ -11,9 +11,11 @@
     "test:unit": "jest tests/unit --runInBand",
     "test:integration": "jest tests/integration --runInBand",
     "test:watch": "jest tests/unit --watch",
-    "db:sync": "node src/database/sync.js",
+    "db:migrate": "sequelize-cli db:migrate",
+    "db:migrate:undo": "sequelize-cli db:migrate:undo",
+    "db:sync": "npm run db:migrate",
     "db:seed": "node src/database/seed.js",
-    "db:setup": "node src/database/sync.js && node src/database/seed.js"
+    "db:setup": "npm run db:migrate && npm run db:seed"
   },
   "keywords": [
     "ecommerce",
@@ -44,6 +46,7 @@
   "devDependencies": {
     "jest": "^30.4.2",
     "nodemon": "^3.1.4",
+    "sequelize-cli": "^6.6.2",
     "supertest": "^7.2.2"
   },
   "engines": {

@@ -13,8 +13,10 @@ async function seed() {
   console.log("[SEED] Iniciando o povoamento do banco de dados...");
 
   try {
-    await sequelize.sync({ force: true });
-    console.log("[SEED] Tabelas recriadas com sucesso.");
+    await sequelize.query(
+      'TRUNCATE TABLE "order_items", "orders", "addresses", "products", "categories", "users" RESTART IDENTITY CASCADE;',
+    );
+    console.log("[SEED] Tabelas limpas com sucesso.");
 
     // 1. Criar Categorias
     const categories = await Category.bulkCreate([

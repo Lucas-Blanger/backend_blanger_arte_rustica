@@ -1,17 +1,10 @@
 const app = require("./app");
 const env = require("./config/env");
-const { testConnection, sequelize } = require("./config/database");
+const { testConnection } = require("./config/database");
 require("./database/associations");
 
 async function start() {
   await testConnection();
-
-  // Em desenvolvimento, mantém as tabelas sincronizadas automaticamente.
-  // Em produção, prefira usar migrations.
-  if (env.nodeEnv === "development") {
-    await sequelize.sync({ alter: true });
-    console.log("[DB] Models sincronizados (modo desenvolvimento).");
-  }
 
   app.listen(env.port, () => {
     console.log(
