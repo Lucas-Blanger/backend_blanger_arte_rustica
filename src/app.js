@@ -19,6 +19,7 @@ const userRoutes = require("./modules/users/user.routes");
 const addressRoutes = require("./modules/addresses/address.routes");
 const productRoutes = require("./modules/products/product.routes");
 const orderRoutes = require("./modules/orders/order.routes");
+const reviewRoutes = require("./modules/reviews/review.routes");
 const setupSwagger = require("./config/swagger");
 
 const app = express();
@@ -61,6 +62,8 @@ app.use(`${API_PREFIX}/auth`, authLimiter, authRoutes);
 app.use(`${API_PREFIX}/users`, userRoutes);
 app.use(`${API_PREFIX}/addresses`, addressRoutes);
 app.use(`${API_PREFIX}/products`, productRoutes);
+app.use(`${API_PREFIX}/products/:productId/reviews`, reviewRoutes);
+app.use(`${API_PREFIX}/reviews`, reviewRoutes);
 app.use(`${API_PREFIX}/orders`, orderRoutes);
 
 // --- 404 e erros ---
