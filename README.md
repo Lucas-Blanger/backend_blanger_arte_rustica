@@ -184,11 +184,3 @@ Authorization: Bearer <token>
 ```
 
 O primeiro usuário cadastrado terá papel `customer` por padrão — promova a `admin` diretamente no banco ou via `PATCH /users/:id/role` usando outro admin já existente.
-
-## Próximos passos sugeridos
-
-- Adicionar testes automatizados (Jest + Supertest)
-- Migrations versionadas com `sequelize-cli` em vez de `sync({ alter: true })`
-- Integração com gateway de pagamento real
-- Upload de imagens de produto (S3/Cloudinary) em vez de `imageUrl` manual
-- Rate limiting (`express-rate-limit`) nas rotas de auth
