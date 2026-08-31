@@ -66,7 +66,7 @@ async function seed() {
         stock: 4,
         sku: "MESA-DEM-08",
         imageUrl:
-          "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf",
+          "https://pub-ea1585d30d314fb8b2709a10120e9b61.r2.dev/imagens-products/8-1615066390971-03e4e1c36ddf.jpeg",
         material: "Peroba Rosa Demolição",
         dimensions: "220cm x 100cm x 78cm",
         isActive: true,
@@ -81,7 +81,7 @@ async function seed() {
         stock: 8,
         sku: "BNC-MAC-03",
         imageUrl:
-          "https://images.unsplash.com/photo-1538688525198-9b88f6f53126",
+          "https://pub-ea1585d30d314fb8b2709a10120e9b61.r2.dev/imagens-products/3-1538688525198-9b88f6f53126.jpeg",
         material: "Peroba Rosa",
         dimensions: "160cm x 45cm x 48cm",
         isActive: true,
@@ -96,7 +96,7 @@ async function seed() {
         stock: 5,
         sku: "APR-RUS-02",
         imageUrl:
-          "https://images.unsplash.com/photo-1595428774223-ef52624120d2",
+          "https://pub-ea1585d30d314fb8b2709a10120e9b61.r2.dev/imagens-products/5-1595428774223-ef52624120d2.jpeg",
         material: "Madeira de Reuso",
         dimensions: "140cm x 40cm x 85cm",
         isActive: true,
@@ -111,7 +111,7 @@ async function seed() {
         stock: 12,
         sku: "LUM-TRN-01",
         imageUrl:
-          "https://images.unsplash.com/photo-1507473885765-e6ed057f782c",
+          "https://pub-ea1585d30d314fb8b2709a10120e9b61.r2.dev/imagens-products/second-1507473885765-e6ed057f782c.jpeg",
         material: "Tronco Natural Tratado",
         dimensions: "30cm x 25cm x 45cm",
         isActive: true,
@@ -126,7 +126,7 @@ async function seed() {
         stock: 10,
         sku: "ESP-MLD-01",
         imageUrl:
-          "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6",
+          "https://pub-ea1585d30d314fb8b2709a10120e9b61.r2.dev/imagens-products/4-1618221195710-dd6b41faaea6.jpeg",
         material: "Madeira Rústica e Cristal 4mm",
         dimensions: "90cm x 70cm x 5cm",
         isActive: true,
@@ -141,9 +141,69 @@ async function seed() {
         stock: 3,
         sku: "RCK-TV-65",
         imageUrl:
-          "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91",
+          "https://pub-ea1585d30d314fb8b2709a10120e9b61.r2.dev/imagens-products/9-1598300042247-d088f8ab3a91.jpeg",
         material: "Peroba Rosa e Estrutura de Ferro",
         dimensions: "180cm x 45cm x 60cm",
+        isActive: true,
+      },
+      {
+        categoryId: catMap["aparadores-e-racks"],
+        name: "Cristaleira Rústica em Peroba Rosa",
+        slug: "cristaleira-rustica-em-peroba-rosa",
+        description:
+          "Cristaleira alta com 2 portas de vidro, prateleiras reforçadas e acabamento de demolição com ferragens artesanais.",
+        price: 2790.0,
+        stock: 2,
+        sku: "CRI-PER-01",
+        imageUrl:
+          "https://pub-ea1585d30d314fb8b2709a10120e9b61.r2.dev/imagens-products/7-1555041469-a586c61ea9bc.jpeg",
+        material: "Peroba Rosa Demolição e Vidro",
+        dimensions: "100cm x 45cm x 190cm",
+        isActive: true,
+      },
+      {
+        categoryId: catMap["cadeiras-e-bancos"],
+        name: "Cadeira Rústica Anatomic Maciça",
+        slug: "cadeira-rustica-anatomic-macica",
+        description:
+          "Cadeira de jantar com encosto anatômico curvado à mão em madeira maciça de reflorestamento e demolição.",
+        price: 420.0,
+        stock: 16,
+        sku: "CAD-ANT-01",
+        imageUrl:
+          "https://pub-ea1585d30d314fb8b2709a10120e9b61.r2.dev/imagens-products/first-1771847882473-7c665a0b538a.jpeg",
+        material: "Madeira Maciça de Demolição",
+        dimensions: "48cm x 52cm x 95cm",
+        isActive: true,
+      },
+      {
+        categoryId: catMap["mesas-rusticas"],
+        name: "Mesa de Centro de Tronco Rústico",
+        slug: "mesa-de-centro-de-tronco-rustico",
+        description:
+          "Mesa de centro exclusiva esculpida de fatia maciça de árvore com bordas orgânicas preservadas e pés de ferro.",
+        price: 1150.0,
+        stock: 4,
+        sku: "MSC-TRN-01",
+        imageUrl:
+          "https://pub-ea1585d30d314fb8b2709a10120e9b61.r2.dev/imagens-products/6-1532323544230-7191fd51bc1b.jpeg",
+        material: "Tora Natural e Ferro Forjado",
+        dimensions: "90cm x 80cm x 40cm",
+        isActive: true,
+      },
+      {
+        categoryId: catMap["iluminacao-rustica"],
+        name: "Pendente Rústico em Ferro e Madeira",
+        slug: "pendente-rustico-em-ferro-e-madeira",
+        description:
+          "Lustre pendente estilo de oficina rústica com suporte em madeira trabalhada e estrutura de ferro martelado.",
+        price: 580.0,
+        stock: 7,
+        sku: "PND-FRR-01",
+        imageUrl:
+          "https://pub-ea1585d30d314fb8b2709a10120e9b61.r2.dev/imagens-products/10-1513506003901-1e6a229e2d15.jpeg",
+        material: "Ferro Martelado e Peroba",
+        dimensions: "60cm x 60cm x 80cm",
         isActive: true,
       },
     ]);
